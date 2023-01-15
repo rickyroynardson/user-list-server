@@ -13,6 +13,9 @@ module.exports = {
   StoreUser: async (payload) => {
     return await User.create(payload);
   },
+  UpdateUser: async (id, payload) => {
+    return await User.findByIdAndUpdate(id, payload);
+  },
   DestroyUser: async (id) => {
     return await User.findByIdAndDelete(id);
   },

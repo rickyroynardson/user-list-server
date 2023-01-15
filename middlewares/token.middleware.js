@@ -11,8 +11,7 @@ module.exports = {
 
     try {
       const decode = DecryptToken(token, 'refresh');
-      if (decode.user.username !== req.body.username)
-        return Unauthorized(res, {});
+      if (decode.user._id !== req.body.id) return Unauthorized(res, {});
 
       next();
     } catch (error) {

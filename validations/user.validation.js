@@ -13,7 +13,7 @@ module.exports = {
   },
   UpdateValidation: (payload) => {
     const schema = Joi.object({
-      username: Joi.string().required(),
+      username: Joi.string(),
       role: Joi.string().valid('user', 'admin'),
     });
 

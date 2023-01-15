@@ -11,4 +11,12 @@ module.exports = {
 
     return schema.validate(payload);
   },
+  UpdateValidation: (payload) => {
+    const schema = Joi.object({
+      username: Joi.string(),
+      role: Joi.string().valid('user', 'admin'),
+    });
+
+    return schema.validate(payload);
+  },
 };

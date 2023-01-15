@@ -2,6 +2,8 @@ const {
   FetchUsers,
   StoreUser,
   DestroyUser,
+  FetchUserById,
+  UpdateUser,
 } = require('../repositories/user.repository');
 const { InternalServerError, Ok } = require('../utils/http-response');
 const { Encrypt } = require('../utils/hash-password');
@@ -32,6 +34,19 @@ module.exports = {
       return Ok(res, result, 'User created successfully');
     } catch (error) {
       return InternalServerError(res, error, 'Failed to store user data');
+    }
+  },
+  UpdateUser: async (req, res) => {
+    try {
+      const user = await UpdateUser(req.params.id, req.body);
+
+      const payload = {
+        user,
+      };
+
+      return Ok(res, payload, 'User updated successfully');
+    } catch (error) {
+      return InternalServerError(res, error, 'Failed to update user data');
     }
   },
   DeleteUser: async (req, res) => {

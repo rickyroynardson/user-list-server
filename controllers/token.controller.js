@@ -1,11 +1,11 @@
-const { FetchUserByUsername } = require('../repositories/user.repository');
+const { FetchUserById } = require('../repositories/user.repository');
 const { InternalServerError, Ok } = require('../utils/http-response');
 const { EncryptToken } = require('../utils/jwt');
 
 module.exports = {
   RefreshToken: async (req, res) => {
     try {
-      const user = await FetchUserByUsername(req.body.username);
+      const user = await FetchUserById(req.body.id);
       const accessToken = await EncryptToken({ user }, 'access');
 
       const payload = {
